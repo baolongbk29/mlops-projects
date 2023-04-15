@@ -1,0 +1,9 @@
+work_dir: ${hydra:runtime.cwd}
+
+model_name: mobilenetv3_large_100
+checkpoint: outputs\chest_xray\lightning_logs\version_9\checkpoints\epoch=10-step=7171.ckpt
+n_classes: 2
+crop_size: 224
+hydra:
+  run:
+    dir: /result/

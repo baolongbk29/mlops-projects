@@ -1,0 +1,20 @@
+name: vit_base_patch16_384
+sync_dist: True # Use when training with multiple gpu
+arch:
+  _target_: src.network.VITBase
+  model_name: vit_base_patch16_384
+  n_class: 2
+  pretrained: True
+monitor: "val/loss"
+loss:
+  _target_: torch.nn.CrossEntropyLoss
+  label_smoothing: 0.0
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 1e-5
+  weight_decay: 1e-6
+lr_scheduler:
+  _target_: torch.optim.lr_scheduler.CosineAnnealingWarmRestarts
+  T_0: 10
+  T_mult: 1
+  eta_min: 1e-7
